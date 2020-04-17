@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
           appBar: AppBar(
-            title: Text('CrossAxisAlignment.baseline'),
+            title: Text('CrossAxisAlignment.center'),
           ),
           body: Container(
             child: Column(
@@ -49,7 +49,7 @@ class LayoutExample1 extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(border: Border.all()),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Icon(Icons.star, size: 50),
           Icon(Icons.star, size: 200),
@@ -67,7 +67,7 @@ class LayoutExample2 extends StatelessWidget {
       decoration: BoxDecoration(border: Border.all()),
       constraints: BoxConstraints.expand(height: 400.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Icon(Icons.star, size: 50),
           Icon(Icons.star, size: 200),
