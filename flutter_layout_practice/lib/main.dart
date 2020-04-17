@@ -12,16 +12,33 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
           appBar: AppBar(
-            title: Text('MainAxisAlignment.spaceAround'),
+            title: Text('CrossAxisAlignment.baseline'),
           ),
           body: Container(
             child: Column(
               children: <Widget>[
-                LayoutExample1(),
-                LayoutExample2(),
+                // LayoutExample1(),
+                // LayoutExample2(),
+                TextLayout()
               ],
             ),
           )),
+    );
+  }
+}
+
+class TextLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        textBaseline: TextBaseline.alphabetic,
+        children: <Widget>[
+          Text('Baseline', style: Theme.of(context).textTheme.display3),
+          Text('Baseline', style: Theme.of(context).textTheme.body1),
+        ],
+      ),
     );
   }
 }
