@@ -17,9 +17,9 @@ class MyApp extends StatelessWidget {
           body: Container(
             child: Column(
               children: <Widget>[
-                // LayoutExample1(),
-                // LayoutExample2(),
-                TextLayout()
+                LayoutExample1(),
+                LayoutExample2(),
+                // TextLayout()
               ],
             ),
           )),
@@ -49,10 +49,10 @@ class LayoutExample1 extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(border: Border.all()),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Icon(Icons.star, size: 50),
-          Icon(Icons.star, size: 50),
+          Icon(Icons.star, size: 200),
           Icon(Icons.star, size: 50),
         ],
       ),
@@ -67,10 +67,10 @@ class LayoutExample2 extends StatelessWidget {
       decoration: BoxDecoration(border: Border.all()),
       constraints: BoxConstraints.expand(height: 400.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Icon(Icons.star, size: 50),
-          Icon(Icons.star, size: 50),
+          Icon(Icons.star, size: 200),
           Icon(Icons.star, size: 50),
         ],
       ),
