@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
           appBar: AppBar(
-            title: Text('MainAxisAlignment.spaceEvenly'),
+            title: Text('MainAxisAlignment.spaceAround'),
           ),
           body: Container(
             child: Column(
@@ -32,7 +32,7 @@ class LayoutExample1 extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(border: Border.all()),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Icon(Icons.star, size: 50),
           Icon(Icons.star, size: 50),
@@ -50,7 +50,7 @@ class LayoutExample2 extends StatelessWidget {
       decoration: BoxDecoration(border: Border.all()),
       constraints: BoxConstraints.expand(height: 400.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Icon(Icons.star, size: 50),
           Icon(Icons.star, size: 50),
