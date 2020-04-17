@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
             title: Text('MainAxisAlignment.center'),
           ),
           body: Container(
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Icon(Icons.star, size: 50),
