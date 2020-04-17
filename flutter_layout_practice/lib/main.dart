@@ -13,11 +13,11 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
           appBar: AppBar(
-            title: Text('MainAxisAlignment.start'),
+            title: Text('MainAxisAlignment.center'),
           ),
           body: Container(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Icon(Icons.star, size: 50),
                 Icon(Icons.star, size: 50),
