@@ -12,11 +12,10 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
           appBar: AppBar(
-            title: Text('MainAxisAlignment.end'),
+            title: Text('MainAxisAlignment.spaceBetween'),
           ),
           body: Container(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 LayoutExample1(),
                 LayoutExample2(),
@@ -32,8 +31,8 @@ class LayoutExample1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(border: Border.all()),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Icon(Icons.star, size: 50),
           Icon(Icons.star, size: 50),
@@ -49,8 +48,9 @@ class LayoutExample2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(border: Border.all()),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+      constraints: BoxConstraints.expand(height: 400.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Icon(Icons.star, size: 50),
           Icon(Icons.star, size: 50),
