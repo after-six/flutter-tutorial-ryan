@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -13,18 +12,51 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
           appBar: AppBar(
-            title: Text('MainAxisAlignment.center'),
+            title: Text('MainAxisAlignment.end'),
           ),
           body: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Icon(Icons.star, size: 50),
-                Icon(Icons.star, size: 50),
-                Icon(Icons.star, size: 50),
+                LayoutExample1(),
+                LayoutExample2(),
               ],
             ),
           )),
+    );
+  }
+}
+
+class LayoutExample1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(border: Border.all()),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Icon(Icons.star, size: 50),
+          Icon(Icons.star, size: 50),
+          Icon(Icons.star, size: 50),
+        ],
+      ),
+    );
+  }
+}
+
+class LayoutExample2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(border: Border.all()),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          Icon(Icons.star, size: 50),
+          Icon(Icons.star, size: 50),
+          Icon(Icons.star, size: 50),
+        ],
+      ),
     );
   }
 }
