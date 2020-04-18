@@ -25,9 +25,11 @@ class ConstrainedBoxLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ConstrainedBox(
-        constraints: BoxConstraints.expand(
-          height: 300,
-        ),
+        constraints: BoxConstraints(
+            minWidth: double.infinity,
+            maxWidth: double.infinity,
+            minHeight: 300,
+            maxHeight: 300),
         child: Card(child: const Text('Hello World!'), color: Colors.yellow),
       ),
     );
