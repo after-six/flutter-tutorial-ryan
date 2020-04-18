@@ -12,10 +12,20 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('.expand(height: 300.0)'),
+          title: Text('Container as a layout'),
         ),
-        body: ConstrainedBoxLayout(),
+        body: ContainerLayout(),
       ),
+    );
+  }
+}
+
+class ContainerLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.yellowAccent,
+      child: Text("hi"),
     );
   }
 }
