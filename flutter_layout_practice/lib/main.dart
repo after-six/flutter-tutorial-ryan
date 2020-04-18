@@ -11,19 +11,23 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('No constraints'),
-          ),
-          body: ConstrainedBox()),
+        appBar: AppBar(
+          title: Text('No constraints'),
+        ),
+        body: ConstrainedBoxLayout(),
+      ),
     );
   }
 }
 
-class ConstrainedBox extends StatelessWidget {
+class ConstrainedBoxLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Card(child: const Text('Hello World!'), color: Colors.yellow),
+      child: ConstrainedBox(
+        constraints: BoxConstraints.expand(),
+        child: Card(child: const Text('Hello World!'), color: Colors.yellow),
+      ),
     );
   }
 }
