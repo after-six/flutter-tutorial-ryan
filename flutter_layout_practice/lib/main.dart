@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
           appBar: AppBar(
-            title: Text('mainAxisSize: MainAxisSize.max,'),
+            title: Text('MainAxisSize.min'),
           ),
           body: Container(
             child: Column(
@@ -33,7 +33,7 @@ class LayoutExample1 extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(border: Border.all()),
       child: Row(
-        mainAxisSize: MainAxisSize.max,
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Icon(Icons.star, size: 50),
           Icon(Icons.star, size: 50),
@@ -50,7 +50,7 @@ class LayoutExample2 extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(border: Border.all()),
       child: Column(
-        mainAxisSize: MainAxisSize.max,
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Icon(Icons.star, size: 50),
           Icon(Icons.star, size: 50),
