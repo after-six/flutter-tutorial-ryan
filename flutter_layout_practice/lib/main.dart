@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('boxShadow: List<BoxShadow>'),
+          title: Text('gradient: LinearGradient'),
         ),
         body: DecorationLayout(),
       ),
@@ -28,10 +28,9 @@ class DecorationLayout extends StatelessWidget {
         height: 200,
         width: 200,
         decoration: BoxDecoration(
-          color: Colors.yellow,
-          boxShadow: const [
-            BoxShadow(blurRadius: 10),
-          ],
+          gradient: LinearGradient(
+            colors: const [Colors.red, Colors.blue],
+          ),
         ),
       ),
     );
