@@ -6,11 +6,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: ExpandedLayout());
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('No constraints'),
+          ),
+          body: ConstrainedBox()),
+    );
+  }
+}
+
+class ConstrainedBox extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Card(child: const Text('Hello World!'), color: Colors.yellow),
+    );
   }
 }
 
