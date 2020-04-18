@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('No constraints'),
+          title: Text('.expand(height: 300.0)'),
         ),
         body: ConstrainedBoxLayout(),
       ),
@@ -25,7 +25,9 @@ class ConstrainedBoxLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: ConstrainedBox(
-        constraints: BoxConstraints.expand(),
+        constraints: BoxConstraints.expand(
+          height: 300,
+        ),
         child: Card(child: const Text('Hello World!'), color: Colors.yellow),
       ),
     );
