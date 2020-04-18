@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('borderRadius: BorderRadius'),
+          title: Text('boxShadow: List<BoxShadow>'),
         ),
         body: DecorationLayout(),
       ),
@@ -27,7 +27,12 @@ class DecorationLayout extends StatelessWidget {
       child: Container(
         height: 200,
         width: 200,
-        decoration: BoxDecoration(color: Colors.yellow, shape: BoxShape.circle),
+        decoration: BoxDecoration(
+          color: Colors.yellow,
+          boxShadow: const [
+            BoxShadow(blurRadius: 10),
+          ],
+        ),
       ),
     );
   }
