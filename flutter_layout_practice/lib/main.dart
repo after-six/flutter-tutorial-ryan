@@ -26,7 +26,7 @@ class ContainerLayout extends StatelessWidget {
     return Container(
       height: double.infinity,
       width: double.infinity,
-      color: Colors.yellowAccent,
+      decoration: BoxDecoration(color: Colors.yellowAccent),
       child: Text("hi"),
     );
   }
