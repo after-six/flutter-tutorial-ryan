@@ -17,27 +17,28 @@ class MyApp extends StatelessWidget {
 class StackLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    const iconSize = 50.0;
     return Scaffold(
-      appBar: AppBar(title: Text('Stack')),
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          Material(
-            color: Colors.yellowAccent,
+        appBar: AppBar(title: Text('Stack')),
+        body: LayoutBuilder(
+          builder: (context, constraints) => Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+              Material(
+                color: Colors.yellowAccent,
+              ),
+              Positioned(
+                top: 0,
+                child: Icon(Icons.star, size: iconSize),
+              ),
+              Positioned(
+                top: constraints.maxHeight - iconSize,
+                left: constraints.maxWidth - iconSize,
+                child: Icon(Icons.call, size: iconSize),
+              ),
+            ],
           ),
-          Positioned(
-            top: 0,
-            left: 0,
-            child: Icon(Icons.star, size: 50),
-          ),
-          Positioned(
-            top: 340,
-            left: 250,
-            child: Icon(Icons.call, size: 50),
-          ),
-        ],
-      ),
-    );
+        ));
   }
 }
 
