@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('image: DecorationImage'),
+          title: Text('border: Border'),
         ),
         body: DecorationLayout(),
       ),
@@ -23,15 +23,13 @@ class MyApp extends StatelessWidget {
 class DecorationLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 200,
-      width: 200,
-      decoration: BoxDecoration(
-        color: Colors.yellow,
-        image: DecorationImage(
-          fit: BoxFit.fitWidth,
-          image: NetworkImage(
-              'https://flutter.io/images/catalog-widget-placeholder.png'),
+    return Center(
+      child: Container(
+        height: 200,
+        width: 200,
+        decoration: BoxDecoration(
+          color: Colors.yellow,
+          border: Border.all(color: Colors.black, width: 3),
         ),
       ),
     );
