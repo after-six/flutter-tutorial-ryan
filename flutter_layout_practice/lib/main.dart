@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('gradient: SweepGradient'),
+          title: Text('backgroundBlendMode'),
         ),
         body: DecorationLayout(),
       ),
@@ -27,18 +27,17 @@ class DecorationLayout extends StatelessWidget {
       child: Container(
         height: 200,
         width: 200,
-        decoration: BoxDecoration(
-          gradient: SweepGradient(
+        foregroundDecoration: BoxDecoration(
+          backgroundBlendMode: BlendMode.exclusion,
+          gradient: LinearGradient(
             colors: const [
-              Colors.yellow,
-              Colors.blue,
-              Colors.green,
               Colors.red,
               Colors.blue,
-              Colors.yellow,
             ],
           ),
         ),
+        child: Image.network(
+            'https://flutter.io/images/catalog-widget-placeholder.png'),
       ),
     );
   }
