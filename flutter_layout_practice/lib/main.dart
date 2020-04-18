@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
           appBar: AppBar(
-            title: Text('CrossAxisAlignment.stretch'),
+            title: Text('mainAxisSize: MainAxisSize.max,'),
           ),
           body: Container(
             child: Column(
@@ -21,7 +21,42 @@ class MyApp extends StatelessWidget {
                 LayoutExample2(),
                 // TextLayout()
               ],
+            ),
           )),
+    );
+  }
+}
+
+class LayoutExample1 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(border: Border.all()),
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Icon(Icons.star, size: 50),
+          Icon(Icons.star, size: 50),
+          Icon(Icons.star, size: 50),
+        ],
+      ),
+    );
+  }
+}
+
+class LayoutExample2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(border: Border.all()),
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Icon(Icons.star, size: 50),
+          Icon(Icons.star, size: 50),
+          Icon(Icons.star, size: 50),
+        ],
+      ),
     );
   }
 }
@@ -36,41 +71,6 @@ class TextLayout extends StatelessWidget {
         children: <Widget>[
           Text('Baseline', style: Theme.of(context).textTheme.display3),
           Text('Baseline', style: Theme.of(context).textTheme.body1),
-        ],
-      ),
-    );
-  }
-}
-
-class LayoutExample1 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(border: Border.all()),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Icon(Icons.star, size: 50),
-          Icon(Icons.star, size: 200),
-          Icon(Icons.star, size: 50),
-        ],
-      ),
-    );
-  }
-}
-
-class LayoutExample2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(border: Border.all()),
-      constraints: BoxConstraints.expand(height: 400.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Icon(Icons.star, size: 50),
-          Icon(Icons.star, size: 200),
-          Icon(Icons.star, size: 50),
         ],
       ),
     );
