@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('border: Border'),
+          title: Text('borderRadius: BorderRadius'),
         ),
         body: DecorationLayout(),
       ),
@@ -30,6 +30,7 @@ class DecorationLayout extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.yellow,
           border: Border.all(color: Colors.black, width: 3),
+          borderRadius: BorderRadius.all(Radius.circular(18)),
         ),
       ),
     );
