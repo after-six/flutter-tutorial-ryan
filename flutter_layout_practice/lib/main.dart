@@ -12,9 +12,23 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('SliverFillRemaining'),
+          title: Text('SizedBox.expand'),
         ),
-        body: SliverLayout(),
+        body: SizedBoxLayout(),
+      ),
+    );
+  }
+}
+
+class SizedBoxLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: SizedBox.expand(
+        child: Card(
+          child: Text('Hello World!'),
+          color: Colors.yellowAccent,
+        ),
       ),
     );
   }
