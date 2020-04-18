@@ -10,7 +10,21 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SizedBoxStateFulLayout(),
+      home: SafeAreaLayout(),
+    );
+  }
+}
+
+class SafeAreaLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.blue,
+      child: SafeArea(
+        child: SizedBox.expand(
+          child: Card(color: Colors.yellowAccent),
+        ),
+      ),
     );
   }
 }
