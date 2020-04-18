@@ -12,10 +12,34 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('shape: BeveledRectangleBorder'),
+          title: Text('SliverFillRemaining'),
         ),
-        body: MaterialLayout(),
+        body: SliverLayout(),
       ),
+    );
+  }
+}
+
+class SliverLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FlutterLogo(size: 600),
+              Text(
+                'This is some longest text that should be centered'
+                'together with the logo',
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
