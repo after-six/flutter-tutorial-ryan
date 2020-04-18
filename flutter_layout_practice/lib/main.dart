@@ -10,11 +10,39 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('SizedBox as Padding'),
-        ),
-        body: SizedBoxLayout(),
+      home: SizedBoxStateFulLayout(),
+    );
+  }
+}
+
+class SizedBoxStateFulLayout extends StatefulWidget {
+  @override
+  _SizedBoxStateFulLayoutState createState() => _SizedBoxStateFulLayoutState();
+}
+
+class _SizedBoxStateFulLayoutState extends State<SizedBoxStateFulLayout> {
+  bool isVisible = false;
+
+  void _triggerVisible() {
+    setState(() {
+      isVisible = !isVisible;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('isVisible = $isVisible'),
+      ),
+      body: isVisible
+          ? Center(
+              child: Icon(Icons.star, size: 150),
+            )
+          : const SizedBox(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _triggerVisible,
+        child: Icon(Icons.add),
       ),
     );
   }
