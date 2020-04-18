@@ -6,24 +6,40 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('MainAxisSize.min'),
-          ),
-          body: Container(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: InstrinsicLayout());
+  }
+}
+
+class InstrinsicLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(title: Text('IntrinsicWidth')),
+        body: Center(
+          child: IntrinsicWidth(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                LayoutExample1(),
-                LayoutExample2(),
-                // TextLayout()
+                RaisedButton(
+                  onPressed: () => {},
+                  child: Text('Short'),
+                ),
+                RaisedButton(
+                  onPressed: () => {},
+                  child: Text('A bit Longer'),
+                ),
+                RaisedButton(
+                  onPressed: () => {},
+                  child: Text('The Longest text button'),
+                ),
               ],
             ),
-          )),
-    );
+          ),
+        ));
   }
 }
 
