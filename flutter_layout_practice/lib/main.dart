@@ -27,11 +27,7 @@ class DecorationLayout extends StatelessWidget {
       child: Container(
         height: 200,
         width: 200,
-        decoration: BoxDecoration(
-          color: Colors.yellow,
-          border: Border.all(color: Colors.black, width: 3),
-          borderRadius: BorderRadius.all(Radius.circular(18)),
-        ),
+        decoration: BoxDecoration(color: Colors.yellow, shape: BoxShape.circle),
       ),
     );
   }
