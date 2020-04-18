@@ -12,9 +12,30 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('backgroundBlendMode'),
+          title: Text('shape: BeveledRectangleBorder'),
         ),
-        body: DecorationLayout(),
+        body: MaterialLayout(),
+      ),
+    );
+  }
+}
+
+class MaterialLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        child: Material(
+          shape: const BeveledRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            side: BorderSide(color: Colors.black, width: 4),
+          ),
+          color: Colors.yellow,
+          child: Container(
+            height: 200,
+            width: 200,
+          ),
+        ),
       ),
     );
   }
