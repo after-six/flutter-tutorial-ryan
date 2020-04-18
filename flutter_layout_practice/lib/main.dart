@@ -10,7 +10,38 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: StackLayout());
+        home: ExpandedLayout());
+  }
+}
+
+class ExpandedLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Expanded'),
+        ),
+        body: Container(
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                  child: Container(
+                    decoration: const BoxDecoration(color: Colors.red),
+                  ),
+                  flex: 3),
+              Expanded(
+                  child: Container(
+                    decoration: const BoxDecoration(color: Colors.green),
+                  ),
+                  flex: 2),
+              Expanded(
+                  child: Container(
+                    decoration: const BoxDecoration(color: Colors.blue),
+                  ),
+                  flex: 1),
+            ],
+          ),
+        ));
   }
 }
 
