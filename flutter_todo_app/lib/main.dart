@@ -5,73 +5,77 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    List<String> lists = [
-      "blablalbla",
-      "blablalbla",
-      "blablalbla",
-      "blablalbla",
-      "blablalbla",
-      "blablalbla",
-      "blablalbla",
-      "blablalbla",
-      "blablalbla",
-    ];
-
-    Widget buildTodoList(context) {
-      return ListView.separated(
-        itemCount: lists.length,
-        itemBuilder: (context, idx) {
-          final item = lists[idx];
-          final no = idx + 1;
-          return ListTile(
-            leading: Icon(Icons.event),
-            title: Text('$no : ' + item),
-            subtitle: Text('안할꺼면서 적어두는 리스트'),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Icon(Icons.check_box_outline_blank),
-                Icon(Icons.delete, color: Colors.red[300]),
-              ],
-            ),
-          );
-        },
-        separatorBuilder: (context, idx) {
-          return Divider();
-        },
-      );
-    }
-
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Todo App',
       home: Scaffold(
         appBar: AppBar(title: Text("After todo")),
-        body: Container(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              TodoTextField(),
-              Expanded(
-                child: buildTodoList(context),
-              ),
-            ],
-          ),
-        ),
+        body: TodoApp(),
       ),
     );
   }
 }
 
-class TodoTextField extends StatelessWidget {
-  const TodoTextField({
-    Key key,
-  }) : super(key: key);
+class TodoApp extends StatefulWidget {
+  TodoApp({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  _TodoAppState createState() => _TodoAppState();
+}
+
+class _TodoAppState extends State<TodoApp> {
+  List<String> lists = [];
+
+  String todoText = "";
+  void insert() {
+    setState(() {
+      lists.insert(0, todoText);
+      todoText = "";
+    });
+  }
+
+  void delete(int index) {
+    setState(() {
+      lists.removeAt(index);
+    });
+  }
+
+  void handleTextInput(text) {
+    setState(() {
+      todoText = text;
+    });
+  }
+
+  Widget buildTodoList(context) {
+    return ListView.separated(
+      itemCount: lists.length,
+      itemBuilder: (context, idx) {
+        final item = lists[idx];
+        final no = idx + 1;
+        return ListTile(
+          leading: Icon(Icons.event),
+          title: Text('$no : ' + item),
+          subtitle: Text('안할꺼면서 적어두는 리스트'),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Icon(Icons.check_box_outline_blank),
+              IconButton(
+                icon: Icon(Icons.delete, color: Colors.red[300]),
+                onPressed: () => delete(idx),
+              )
+            ],
+          ),
+        );
+      },
+      separatorBuilder: (context, idx) {
+        return Divider();
+      },
+    );
+  }
+
+  Widget buildInputForm() {
     return Container(
       padding: EdgeInsets.only(left: 20, right: 20),
       decoration: BoxDecoration(
@@ -88,6 +92,8 @@ class TodoTextField extends StatelessWidget {
                   counterStyle: TextStyle(fontSize: 0),
                   hintText: "안할걸 알고 있지만 적어보거라",
                   border: InputBorder.none),
+              onChanged: handleTextInput,
+              onSubmitted: (text) => insert(),
             ),
           ),
           Flexible(
@@ -97,6 +103,21 @@ class TodoTextField extends StatelessWidget {
                 color: Colors.blueGrey,
                 onPressed: () {},
               )),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          buildInputForm(),
+          Expanded(
+            child: buildTodoList(context),
+          ),
         ],
       ),
     );
