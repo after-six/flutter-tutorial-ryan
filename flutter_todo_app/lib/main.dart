@@ -26,12 +26,9 @@ class TodoApp extends StatefulWidget {
 
 class _TodoAppState extends State<TodoApp> {
   List<String> lists = [];
-
-  String todoText = "";
-  void insert() {
+  void insert(String text) {
     setState(() {
-      lists.insert(0, todoText);
-      todoText = "";
+      lists.insert(0, text);
     });
   }
 
@@ -41,41 +38,85 @@ class _TodoAppState extends State<TodoApp> {
     });
   }
 
-  void handleTextInput(text) {
-    setState(() {
-      todoText = text;
-    });
-  }
-
-  Widget buildTodoList(context) {
-    return ListView.separated(
-      itemCount: lists.length,
-      itemBuilder: (context, idx) {
-        final item = lists[idx];
-        final no = idx + 1;
-        return ListTile(
-          leading: Icon(Icons.event),
-          title: Text('$no : ' + item),
-          subtitle: Text('안할꺼면서 적어두는 리스트'),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Icon(Icons.check_box_outline_blank),
-              IconButton(
-                icon: Icon(Icons.delete, color: Colors.red[300]),
-                onPressed: () => delete(idx),
-              )
-            ],
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          InputScreen(insert: insert),
+          Expanded(
+            child: ListScreen(lists: lists, onDelete: delete),
           ),
-        );
-      },
-      separatorBuilder: (context, idx) {
-        return Divider();
-      },
+        ],
+      ),
     );
   }
+}
 
-  Widget buildInputForm() {
+typedef TodoDeleteCallback = void Function(int);
+
+class ListScreen extends StatelessWidget {
+  ListScreen({@required this.lists, this.onDelete});
+
+  final List<String> lists;
+  final TodoDeleteCallback onDelete;
+
+  Widget _buildItem(BuildContext context, int idx) {
+    final item = lists[idx];
+    return TodoTile(text: item, index: idx, onDelete: onDelete);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: ListView.separated(
+        itemCount: lists.length,
+        itemBuilder: _buildItem,
+        separatorBuilder: (context, idx) {
+          return Divider();
+        },
+      ),
+    );
+  }
+}
+
+class TodoTile extends StatelessWidget {
+  TodoTile({@required this.text, @required this.index, this.onDelete});
+  final String text;
+  final int index;
+  final TodoDeleteCallback onDelete;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(Icons.event),
+      title: Text(text),
+      subtitle: Text('안할꺼면서 적어두는 리스트'),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Icon(Icons.check_box_outline_blank),
+          IconButton(
+            icon: Icon(Icons.delete, color: Colors.red[300]),
+            onPressed: () => onDelete(index),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+typedef InputInsertCallback = void Function(String);
+
+class InputScreen extends StatelessWidget {
+  InputScreen({@required this.insert});
+
+  final InputInsertCallback insert;
+  final controller = new TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 20, right: 20),
       decoration: BoxDecoration(
@@ -87,13 +128,15 @@ class _TodoAppState extends State<TodoApp> {
           Flexible(
             flex: 9,
             child: TextField(
+              controller: controller,
               maxLength: 25,
               decoration: InputDecoration(
                   counterStyle: TextStyle(fontSize: 0),
                   hintText: "안할걸 알고 있지만 적어보거라",
                   border: InputBorder.none),
-              onChanged: handleTextInput,
-              onSubmitted: (text) => insert(),
+              onSubmitted: (text) {
+                insert(text);
+              },
             ),
           ),
           Flexible(
@@ -101,23 +144,11 @@ class _TodoAppState extends State<TodoApp> {
               child: IconButton(
                 icon: Icon(Icons.add),
                 color: Colors.blueGrey,
-                onPressed: () {},
+                onPressed: () {
+                  insert(controller.text);
+                  controller.clear();
+                },
               )),
-        ],
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          buildInputForm(),
-          Expanded(
-            child: buildTodoList(context),
-          ),
         ],
       ),
     );
