@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import './models/todo.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => Todos(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,17 +30,14 @@ class TodoApp extends StatefulWidget {
 }
 
 class _TodoAppState extends State<TodoApp> {
-  List<String> lists = [];
+  Todos lists = new Todos();
   void insert(String text) {
-    setState(() {
-      lists.insert(0, text);
-    });
+    Todo todo = new Todo(0, 0, text, false);
+    lists.add(todo);
   }
 
   void delete(int index) {
-    setState(() {
-      lists.removeAt(index);
-    });
+    lists.delete(index);
   }
 
   @override
@@ -46,7 +48,11 @@ class _TodoAppState extends State<TodoApp> {
         children: <Widget>[
           InputScreen(insert: insert),
           Expanded(
-            child: ListScreen(lists: lists, onDelete: delete),
+            child: Consumer<Todos>(
+              builder: (context, todos, child) {
+                return ListScreen(lists: todos, onDelete: delete);
+              },
+            ),
           ),
         ],
       ),
@@ -59,19 +65,19 @@ typedef TodoDeleteCallback = void Function(int);
 class ListScreen extends StatelessWidget {
   ListScreen({@required this.lists, this.onDelete});
 
-  final List<String> lists;
+  final Todos lists;
   final TodoDeleteCallback onDelete;
 
   Widget _buildItem(BuildContext context, int idx) {
-    final item = lists[idx];
-    return TodoTile(text: item, index: idx, onDelete: onDelete);
+    final Todo item = lists.getItem(idx);
+    return TodoTile(text: item.title, index: idx, onDelete: onDelete);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: ListView.separated(
-        itemCount: lists.length,
+        itemCount: lists.length(),
         itemBuilder: _buildItem,
         separatorBuilder: (context, idx) {
           return Divider();
